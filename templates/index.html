@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pothole Detection System</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Pothole Detection System</h1>
+    <p class="subtitle">Upload a road video to detect and highlight potholes automatically</p>
+    
+    <form method="POST" enctype="multipart/form-data">
+      <div class="upload-section">
+        <label for="video">Select Video File</label>
+        <div class="file-input-wrapper">
+          <input type="file" name="video" id="video" accept="video/*" required>
+        </div>
+        <button type="submit">Analyze Video</button>
+      </div>
+    </form>
+
+    {% if video_url %}
+    <div class="results-section">
+      <h2>Detection Results</h2>
+      <video controls width="720">
+        <source src="{{ video_url }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <a href="{{ video_url }}" class="download-link" download>Download Processed Video</a>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
